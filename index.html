@@ -16,6 +16,105 @@
             margin: 0;
             background: url('https://r2.ctn32.dpdns.org/raw/jntm.png') no-repeat center center fixed;
             background-size: cover;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://r2.ctn32.dpdns.org/raw/jntm.png');
+        }
+        
+        .dark-mode .music-player {
+            background-color: rgba(40, 40, 50, 0.95);
+            border-color: #444;
+            transform: scale(0.98);
+        }
+        
+        .dark-mode .player-container {
+            background-color: rgba(30, 60, 90, 0.9);
+            border-color: #336;
+        }
+        
+        .dark-mode .banner-image {
+            filter: brightness(0.7) contrast(1.1);
+        }
+        
+        .dark-mode .song-list {
+            background: #252525;
+            color: #e0e0e0;
+        }
+        
+        .dark-mode .song-item {
+            border-bottom-color: #333;
+        }
+        
+        .dark-mode .song-item:hover {
+            background-color: #383838;
+        }
+        
+        .dark-mode .controls-container {
+            background-color: rgba(40, 40, 45, 0.9);
+        }
+        
+        .dark-mode .menu-options {
+            background-color: #252525;
+            color: #e0e0e0;
+        }
+        
+        .dark-mode .menu-option {
+            color: #e0e0e0;
+        }
+        
+        .dark-mode .menu-option:hover {
+            background-color: #383838;
+        }
+        
+        .dark-mode .menu-option:not(:last-child) {
+            border-bottom-color: #333;
+        }
+        
+        .dark-mode .cube .face {
+            background-color: rgba(0, 0, 0, 0.95);
+            border-color: #666;
+            color: #aaa;
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            background-color: rgba(200, 200, 210, 0.8);
+            border-radius: 20px;
+            padding: 5px;
+            z-index: 10;
+        }
+        
+        .dark-mode .theme-toggle {
+            background-color: rgba(60, 60, 70, 0.9);
+        }
+        
+        .theme-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .dark-mode .theme-btn {
+            color: #ccc;
+        }
+        
+        .theme-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
         
         .banner-image {
@@ -26,6 +125,7 @@
             margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
         
         .music-player {
@@ -38,6 +138,8 @@
             width: 80%;
             max-width: 500px;
             margin-bottom: 20px;
+            position: relative;
+            transition: all 0.3s ease;
         }
         .button-group {
             display: flex;
@@ -87,6 +189,7 @@
             border: 1px solid #3399FF;
             border-radius: 10px;
             background-color: rgba(51, 153, 255, 0.8);
+            transition: all 0.3s ease;
         }
         .song-list {
             display: none;
@@ -96,11 +199,13 @@
             padding: 10px;
             max-height: 150px;
             overflow-y: auto;
+            transition: all 0.3s ease;
         }
         .song-item {
             padding: 8px;
             cursor: pointer;
             border-bottom: 1px solid #eee;
+            transition: all 0.2s ease;
         }
         .song-item:hover {
             background-color: #f5f5f5;
@@ -136,6 +241,7 @@
             color: #ccc;
             opacity: 0.9;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
         .front { 
             transform: translateZ(60px);
@@ -166,6 +272,7 @@
             padding: 15px 0;
             position: sticky;
             bottom: 0;
+            transition: all 0.3s ease;
         }
         
         @keyframes shake {
@@ -190,6 +297,7 @@
             z-index: 100;
             min-width: 150px;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
         .menu-option {
             padding: 12px 16px;
@@ -207,6 +315,11 @@
 </head>
 
 <body>
+    <div class="theme-toggle">
+        <button class="theme-btn" id="lightModeBtn">☀</button>
+        <button class="theme-btn" id="darkModeBtn">☾</button>
+    </div>
+
     <div class="cube-container">
         <div class="cube">
             <div class="face front">欣赏</div>
@@ -219,7 +332,7 @@
     </div>
 
     <div class="music-player">
-        <h2>星彩的音乐播放器v2.1</h2>
+        <h2>星彩的音乐播放器v3.0</h2>
 
         <img src="https://r2.ctn32.dpdns.org/raw/丛林秘境.png" alt="丛林秘境" class="banner-image">
 
@@ -229,17 +342,24 @@
                 <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/hal3.mp3">hal3</div>
                 <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/11.mp3">11号唱片</div>
                 <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/13.mp3">13号唱片</div>
+                <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/menu1.mp3">menu1</div>
+                <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/menu2.mp3">menu2</div>
+                <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/menu3.mp3">menu3</div>
+                <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/menu4.mp3">menu4</div>
+                <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/calm1.mp3">calm1</div>
+                <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/calm2.mp3">calm2</div>
+                <div class="song-item" data-src="https://r2.ctn32.dpdns.org/raw/calm3.mp3">calm3</div>
             </div>
             <audio id="music" loop>
                 <source src="https://r2.ctn32.dpdns.org/raw/hal3.mp3" type="audio/mpeg">
-                浏览器不支持该音频
+                不正确音频
             </audio>
         </div>
     </div>
 
     <div class="controls-container">
         <div class="button-group">
-            <button id="playButton">奇妙的事</button>
+            <button id="playButton">点击后会有奇♂妙♀哦</button>
             <button id="listButton">列表</button>
             <button id="menuButton">
                 <div class="menu-dots">
@@ -267,7 +387,11 @@
         const music = document.getElementById('music');
         const songItems = document.querySelectorAll('.song-item');
         const menuOptionItems = document.querySelectorAll('.menu-option');
+        const lightModeBtn = document.getElementById('lightModeBtn');
+        const darkModeBtn = document.getElementById('darkModeBtn');
         let isPlaying = false;
+        
+        music.loop = true;
         
         function addShakeEffect(button) {
             button.classList.add('shake');
@@ -280,10 +404,10 @@
             addShakeEffect(this);
             if (isPlaying) {
                 music.pause();
-                playButton.textContent = '奇妙的事';
+                playButton.textContent = '点击后会有奇♂妙♀哦';
             } else {
                 music.play();
-                playButton.textContent = '我的世界正在抽象中......';
+                playButton.textContent = 'MC正在抽象中......';
             }
             isPlaying = !isPlaying;
         });
@@ -306,11 +430,12 @@
                 
                 music.querySelector('source').src = newSrc;
                 music.load();
+                music.loop = true;
                 
                 if (isCurrentlyPlaying) {
                     music.play();
                 } else {
-        playButton.textContent = '奇妙的事';
+                    playButton.textContent = '点击后会有奇♂妙♀哦';
                 }
                 
                 songList.style.display = 'none';
@@ -343,6 +468,14 @@
                 menuOptions.style.display = 'none';
                 document.removeEventListener('click', closeMenu);
             });
+        });
+        
+        darkModeBtn.addEventListener('click', function() {
+            document.body.classList.add('dark-mode');
+        });
+        
+        lightModeBtn.addEventListener('click', function() {
+            document.body.classList.remove('dark-mode');
         });
     </script>
 </body>
